@@ -71,3 +71,91 @@
 //     Console.Write(even + " ");
 //     even += 2;
 // }
+
+// ДОМАШНЕЕ ЗАДАНИЕ ВТОРОГО СЕМИНАРА
+
+// Задача 10: Напишите программу, которая принимает на вход трёхзначное число и на выходе показывает вторую цифру этого числа.
+// 456 -> 5
+// 782 -> 8
+// 918 -> 1
+
+// System.Console.WriteLine("Введите любое 3-х значное число: ");
+// int num = int.Parse(Console.ReadLine() ?? "0");
+// double digit = Math.Log10(num);
+// digit = (int)digit;
+
+// if (digit == 2)
+// {
+//     int result = num / 10;
+//     result = result % 10;
+//     Console.WriteLine("Вторая цифра числа -> " + result);
+// }
+// else
+// {
+//     Console.WriteLine("Введенное число не является 3-х значным!!!");
+//     Console.WriteLine("Введите 3-х значное число!!!");
+// }
+
+// Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
+// 645 -> 5
+// 78 -> третьей цифры нет
+// 32679 -> 6
+
+// System.Console.WriteLine("Введите число");
+// char[] num = Console.ReadLine().ToCharArray();
+
+// if (num.Length > 2)
+//  {
+//     Console.Write("Третья цифра в числе: ");
+//     Console.Write(num);
+//     Console.Write(", равняется -> ");
+//     Console.WriteLine(num[2]);
+//  }
+// else
+// {
+//     Console.Write("Третья цифра в числе: ");
+//     Console.Write(num);
+//     Console.WriteLine(", отсутствует!");
+// }
+
+// Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
+// 6 -> да
+// 7 -> да
+// 1 -> нет
+
+// Решение 1
+
+// Console.WriteLine("Enter digit day of week from 1 to 7: ");
+// int day = Convert.ToInt32(Console.ReadLine());
+
+// if (day == 6 || day == 7)
+//     {
+//         Console.WriteLine($"{day} is weekend day.");
+//     }
+//     else
+//     {
+//         Console.WriteLine($"{day} is not weekend day.");
+//     }
+
+// Решение 2
+
+// Console.WriteLine("Input numbers from 1 to 7");
+// string? inputNum = Console.ReadLine();
+
+// if (inputNum != null)
+// {
+//     int nameDay = int.Parse(inputNum);
+//     string DayOfWeek = string.Empty;
+//     switch (nameDay)
+//     {
+//         case 1: DayOfWeek = "Monday, working day"; break;
+//         case 2: DayOfWeek = "Tuesday, working day"; break;
+//         case 3: DayOfWeek = "Wednesday, working day"; break;
+//         case 4: DayOfWeek = "Thursday, working day"; break;
+//         case 5: DayOfWeek = "Friday, working day"; break;
+//         case 6: DayOfWeek = "Saturday, weekend"; break;
+//         case 7: DayOfWeek = "Sunday, weekend"; break;
+//         default: DayOfWeek = "This is not a day of the week!"; break;
+//     }
+//     Console.WriteLine(DayOfWeek);
+// }
