@@ -159,3 +159,98 @@
 //     }
 //     Console.WriteLine(DayOfWeek);
 // }
+
+// ЗАДАЧА 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
+// 3, 5 -> 243 (3⁵)
+// 2, 4 -> 16
+// using System;
+
+// class Program
+// {
+//     static void Main(string[] args)
+//     {
+//         Console.WriteLine("Введите число A:");
+//         int A = Convert.ToInt32(Console.ReadLine());
+
+//         Console.WriteLine("\nВведите степень B:");
+//         int B = Convert.ToInt32(Console.ReadLine());
+
+//         double result = Math.Pow(A, B);
+//         Console.WriteLine($"Результат: {result}");
+//     }
+// }
+// Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
+// 452 -> 11
+// 82 -> 10
+// 9012 -> 12
+
+// int ReadDataStr(string msg)
+// {
+//     Console.WriteLine(msg);
+//     return int.Parse(Console.ReadLine() ?? "0");
+// }
+
+// void PrintData(string msg, int res)
+// {
+//     Console.WriteLine(msg + res);
+// }
+
+// int SummaNumDigChar(int num)
+// {
+//     int res = 0;
+
+//     string str = num.ToString();
+//     for(int i = 0; i < str.Length; i++)
+//     {   
+//         res = res + (str[i] - '0');
+//     }
+//     return res;
+// }
+
+
+// int number = ReadDataStr("Введите положительное, целое число: ");
+
+// int summaChar = SummaNumDigChar(number);
+
+
+// PrintData("Сумма цифр числа равна: ", summaChar);
+// Console.WriteLine(" ");
+
+// Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
+// 1, 2, 5, 7, 19 -> [1, 2, 5, 7, 19]
+// 6, 1, 33 -> [6, 1, 33]
+
+int ReadData(string msg)
+{
+    Console.WriteLine(msg);
+    return int.Parse(Console.ReadLine() ?? "0");
+}
+
+int[] Gen1DArr(int num, int begin, int end)
+{
+    Random rnd = new Random();
+    int[] arr = new int[num];
+    for (int i = 0; i < arr.Length; i++)
+    {
+        arr[i] = rnd.Next(begin, end);
+    }
+    return arr;
+}
+
+void Print1DArr(int[] arr)
+{
+    Console.Write("[");
+    for (int i = 0; i < arr.Length-1; i++)
+    {
+        Console.Write(arr[i]+", ");
+    }
+    Console.WriteLine(arr[arr.Length-1]+"]");
+}
+
+int arrLen = ReadData("Введите длину массива: ");
+int arrFirst = ReadData("Введите левый диапазон эл-тов: ");
+int arrEnd = ReadData("Введите правый диапазон эл-тов: ");
+
+int[] arr = Gen1DArr(arrLen, arrFirst, arrEnd);
+
+Print1DArr(arr);
