@@ -294,45 +294,175 @@
 //
 // b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)
 
-double X(double k1, double k2, double b1, double b2)
+// 
+
+// // Задача 47: Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+
+int PromptInt(string prompt)
 {
-    return (b2 - b1) / (k1 - k2);
+    Console.Write(prompt);
+    int result = Convert.ToInt32(Console.ReadLine());
+    return result;
 }
 
-double Y(double x, double k1, double b1)
+double PromptFloat(string prompt)
 {
-    return k1 * x + b1;
+    Console.Write(prompt);
+    double result = Convert.ToDouble(Console.ReadLine());
+    return result;
 }
 
-double inputDouble(string promt)
+double[,] SetArray(int rows, int columns, double min, double max)
 {
-    Console.Write(promt);
-    return Convert.ToDouble(Console.ReadLine());
+    Random rand = new Random();
+    double[,] result = new double[rows, columns];
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < columns; j++)
+        {
+            result[i, j] = rand.NextDouble() * max + min;
+        }
+    return result;
 }
 
-bool ValidateLines(double k1, double b1, double k2, double b2)
+void ShowArray(double[,] array)
 {
-    if (k1 == k2)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        if (b1 == b2)
-            Console.WriteLine("Прямые совдадают");
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write($"{array[i, j]:f2}\t ");
+        }
+        if (i < array.GetLength(0) - 1)
+            Console.WriteLine();
         else
-            Console.WriteLine("Прямые параллельны");
-
-        return false;
+           Console.Write(" ");
     }
-    return true;
 }
 
-Console.WriteLine("Для уравнений вида y=k*x+b");
-double k1 = inputDouble("Введите к1: ");
-double b1 = inputDouble("Введите b1: ");
-double k2 = inputDouble("Введите к2: ");
-double b2 = inputDouble("Введите b2: ");
-if (ValidateLines(k1, b1, k2, b2))
-{
-    double x = X(k1, k2, b1, b2);
-    double y = Y(x, k1, b1);
-    Console.WriteLine($"Для уравнений y={k1}*x+{b1} и y={k2}*x+{b2}");
-    Console.WriteLine($"Общая точка имеет координаты ({x}; {y})");
-}
+int rows = PromptInt("Введите количество строк в массиве: ");
+int columns = PromptInt("Введите количество столбцов в массиве: ");
+double min = PromptFloat("Введите минимальное значение для элементов в массиве: ");
+double max = PromptFloat("Введите максимальное значение для элементов в массиве: ");
+double[,] array = SetArray(rows, columns, min, max);
+ShowArray(array);
+
+// Задача 50: Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и
+// возвращает значение этого элемента или же указание, что такого элемента нет.
+
+// int PromptInt(string prompt)
+// {
+//     Console.Write(prompt);
+//     int result = Convert.ToInt32(Console.ReadLine());
+//     return result;
+// }
+
+// int[,] SetArray(int rows, int columns, int min, int max)
+// {
+//     Random rand = new Random();
+//     int[,] result = new int[rows, columns];
+//     for (int i = 0; i < rows; i++)
+//         for (int j = 0; j < columns; j++)
+//         {
+//             result[i, j] = rand.Next(min, max);
+//         }
+//     return result;
+// }
+
+// void ShowArray(int[,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         Console.Write("[");
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             Console.Write($"{array[i, j], 3}");
+//         }
+//         Console.Write("]");
+//         Console.WriteLine();
+//     }
+// }
+
+// int rows = PromptInt("Введите количество строк: ");
+// int columns = PromptInt("Введите количество столбцов: ");
+// int min = PromptInt("Введите минимальное значение элемента: ");
+// int max = PromptInt("Введите максимальное значение элемента: ");
+// int[,] array = SetArray(rows, columns, min, max);
+// ShowArray(array);
+// int row = PromptInt("Введите номер строки: ");
+// int col = PromptInt("Введите номер столбца: ");
+// ShowArray(array);
+// Console.Write($"{row}{col} -> ");
+// if (row > rows || col > columns)
+//     Console.WriteLine("Такой элемент отсутствует");
+// else
+//     Console.WriteLine($"{array[row - 1, col - 1]}");
+
+// Задача 52: Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом
+// столбце.
+//
+// int PromptInt(string prompt)
+// {
+//   Console.Write(prompt);
+//   int result = Convert.ToInt32(Console.ReadLine());
+//   return result;
+// }
+
+// int[,] SetArray(int rows, int columns, int min, int max)
+// {
+//   Random rand = new Random();
+//   int[,] result = new int[rows, columns];
+//   for (int i = 0; i < rows; i++)
+//     for (int j = 0; j < columns; j++)
+//     {
+//       result[i, j] = rand.Next(min, max);
+//     }
+//   return result;
+// }
+
+// void ShowMatrix(int[,] array)
+// {
+//   for (int i = 0; i < array.GetLength(0); i++)
+//   {
+//       for (int j = 0; j < array.GetLength(1); j++)
+//     {
+//       Console.Write($"{array[i, j],3}");
+//     }
+//     Console.WriteLine();
+//   }
+// }
+
+// double[] GetMean(int[,] array)
+// {
+//   double[] result = new double[array.GetLength(1)];
+//   int rows = array.GetLength(0);
+//   int columns = array.GetLength(1);
+//   int sum;
+//   for (int i = 0; i < columns; i++)
+//   {
+//     sum = 0;
+//     for (int j = 0; j < rows; j++)
+//     {
+//       sum += array[j, i];
+//     }
+//     result[i] = sum / Convert.ToDouble(rows);
+//   }
+//   return result;
+// }
+
+// void ShowArray(double[] array)
+// {
+//   Console.Write("[");
+//   for (int i = 0; i < array.Length; i++)
+//   {
+//     Console.Write($"{array[i]:f2} {(i < array.Length - 1 ? ";" : "] -> ")}");
+//   }
+// }
+
+// int rows = PromptInt("Введите количество строк: ");
+// int columns = PromptInt("Введите количество столбцов: ");
+// int min = PromptInt("Введите минимальное значение элемента: ");
+// int max = PromptInt("Введите максимальное значение элемента: ");
+// int[,] array = SetArray(rows, columns, min, max);
+// ShowMatrix(array);
+// double[] means = GetMean(array);
+// ShowArray(means);
