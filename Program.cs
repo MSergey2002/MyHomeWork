@@ -568,129 +568,201 @@
 //   }
 // }
 
-﻿using System;
+// using System;
 
-public class Answer
+// public class Answer
+// {
+//     public static void MultiplyIfPossible(int[,] matrixA, int[,] matrixB)
+//     {
+//         if (matrixA.GetLength(1) != matrixB.GetLength(0))
+//         {
+//             Console.WriteLine("It is impossible to multiply.");
+//         }
+//         else
+//         {
+//             int[,] multiplicative = MatrixMultiplication(matrixA, matrixB);
+//             PrintMatrix(multiplicative);
+//         }
+//     }
+
+//     public static int[,] MatrixMultiplication(int[,] matrixA, int[,] matrixB)
+//     {
+//         int[,] multiplicative = new int[matrixA.GetLength(0), matrixB.GetLength(1)];
+//         for (int i = 0; i < multiplicative.GetLength(0); i++)
+//         {
+//             for (int j = 0; j < multiplicative.GetLength(1); j++)
+//             {
+//                 for (int k = 0; k < matrixA.GetLength(1); k++)
+//                 {
+//                     multiplicative[i, j] += matrixA[i, k] * matrixB[k, j];
+//                 }
+//             }
+//         }
+//         return multiplicative;
+//     }
+
+//     public static void PrintMatrix(int[,] matrix)
+//     {
+//         for (int i = 0; i < matrix.GetLength(0); i++)
+//         {
+//             for (int j = 0; j < matrix.GetLength(1); j++)
+//             {
+//                 Console.Write($"{matrix[i, j]}\t");
+//             }
+//             Console.WriteLine();
+//         }
+//     }
+
+//     public static void Main(string[] args)
+//     {
+//         int[,] matrix;
+
+//         if (args.Length == 0)
+//         {
+//             // Если аргументы не переданы, используем матрицу по умолчанию
+//             matrix = new int[,]
+//             {
+//                 {5, 2},
+//                 {8, 1}
+//             };
+//         }
+//         else
+//         {
+//             // Иначе, парсим аргументы в двумерный массив
+//             string[] rows = args[0].Split(';');
+//             matrix = new int[rows.Length, rows[0].Split(',').Length];
+//             for (int i = 0; i < rows.Length; i++)
+//             {
+//                 string[] elements = rows[i].Split(',');
+//                 for (int j = 0; j < elements.Length; j++)
+//                 {
+//                     if (int.TryParse(elements[j], out int number))
+//                     {
+//                         matrix[i, j] = number;
+//                     }
+//                     else
+//                     {
+//                         Console.WriteLine($"Ошибка при парсинге аргумента {elements[j]}.");
+//                         return;
+//                     }
+//                 }
+//             }
+//         }
+
+//         Console.WriteLine("Исходная матрица:");
+//         PrintMatrix(matrix);
+
+//         int[,] matrixB = {
+//             {5, 6},
+//             {7, 8}
+//         };
+
+//         Console.WriteLine("\nMatrix B:");
+//         PrintMatrix(matrixB);
+
+//         Console.WriteLine("\nMultiplication result:");
+
+//         MultiplyIfPossible(matrix, matrixB);
+//     }
+// }
+
+// АТТЕСТАЦИЯ
+// Задайте значение N. Напишите программу, которая выведет все натуральные числа в промежутке от N до 1. Выполнить с помощью рекурсии.
+// N = 5 -> "5, 4, 3, 2, 1"
+// N = 8 -> "8, 7, 6, 5, 4, 3, 2, 1"
+
+// using System;
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         Console.Write("Enter the start number: ");
+//         int N = Convert.ToInt32(Console.ReadLine());
+
+//         PrintNumbersRecursive(N);
+//         Console.ReadKey();
+//     }
+
+//     static void PrintNumbersRecursive(int number)
+//     {
+//         if (number > 0)
+//         {
+//             Console.Write(number + " ");
+//             PrintNumbersRecursive(number - 1);
+//         }
+//         else
+//         {
+//             return;
+//         }
+        
+//     }
+// }
+
+// Задайте значения M и N. Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.
+// M = 1; N = 15 -> 120
+// M = 4; N = 8. -> 30
+
+// using System;
+
+//     namespace SumOfNaturalNumbers
+// {
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             Console.WriteLine("Input M and N: ->");
+//             string input = Console.ReadLine();
+//             string[] numbers = input.Split();
+//             int m = int.Parse(numbers[0]);
+//             int n = int.Parse(numbers[1]);
+    
+//         Console.WriteLine($"Sum of natural digits from {m} to {n} is -> {SumNaturalNumbers(m, n)}");
+//         }
+
+//         private static int SumNaturalNumbers(int m, int n)
+//         {
+//             if (m <= n)
+//             {
+//             int sum = m;
+//                 m++;
+//             return sum + SumNaturalNumbers(m, n);
+//             }
+//             else
+//             {
+//             return 0;
+//             }
+//         }
+//     }
+// }
+
+// Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
+// m = 2, n = 3 -> A(m,n) = 9
+// m = 3, n = 2 -> A(m,n) = 29
+
+using System;
+
+public class AkkermanFunc
 {
-    public static void MultiplyIfPossible(int[,] matrixA, int[,] matrixB)
-    { // Введите свое решение ниже
-        if (matrixA.GetLength(1) != matrixB.GetLength(0))
-            Console.WriteLine("It is impossible to multiply.");
-        else
-            PrintMatrix(MatrixMultiplication(matrixA, matrixB));
-    }
-
-    public static int[,] MatrixMultiplication(int[,] matrixA, int[,] matrixB)
-    { // Введите свое решение ниже
-        int rows = matrixA.GetLength(0);
-        int columns = matrixB.GetLength(1);
-        int[,] result = new int[rows, columns];
-        for (int i = 0; i < rows; i++)
-            for (int j = 0; j < columns; j++)
-            {
-                result[i, j] = ScalarMultiplication(
-                    GetRowOrColFromMatrix(matrixA, i, 0),
-                    GetRowOrColFromMatrix(matrixB, j, 1)
-                );
-            }
-        return result;
-    }
-
-    public static int ScalarMultiplication(int[] matrixA, int[] matrixB)
+    public static int CalcAkkermanFunc(int m, int n)
     {
-        int size = matrixA.Length;
-        int result = 0;
-        for (int i = 0; i < size; i++)
-        {
-            result += matrixA[i] * matrixB[i];
-        }
-        return result;
-    }
+    if (m == 0)
+    return n + 1;
+        if (n == 0)
+            return CalcAkkermanFunc(m - 1, 1); 
 
-    public static int[] GetRowOrColFromMatrix(int[,] matrix, int Number, int Shape)
-    {
-        //int rows = matrix.GetLength(0);
-        int row,
-            col;
-        int numbers = matrix.GetLength(Shape ^ 1);
-        int[] result = new int[numbers];
-        for (int i = 0; i < numbers; i++)
-        {
-            row = Shape == 0 ? Number : i;
-            col = Shape == 1 ? Number : i;
-            System.Console.WriteLine($"row={row}; col={col}; i={i}");
-            result[i] = matrix[row, col];
-        }
-        return result;
-    }
+        return CalcAkkermanFunc(m - 1, CalcAkkermanFunc(m, n - 1)); 
+    } 
 
-    public static void PrintMatrix(int[,] matrix)
-    {
-        // Введите свое решение ниже
-        int rows = matrix.GetLength(0);
-        int columns = matrix.GetLength(1);
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                Console.Write($"{matrix[i, j]}\t");
-            }
-            Console.WriteLine();
-        }
-    }
+    public static void Main() 
+    { 
+        Console.WriteLine("Enter digits for m and n:"); 
+        string input = Console.ReadLine(); 
+        string[] numbers = input.Split(' '); 
+        int m = int.Parse(numbers[0]); 
+        int n = int.Parse(numbers[1]); 
 
-    // Не удаляйте и не меняйте метод Main!
-    public static void Main(string[] args)
-    {
-        int[,] matrix;
-
-        if (args.Length == 0)
-        {
-            // Если аргументы не переданы, используем матрицу по умолчанию
-            matrix = new int[,]
-            {
-                { 2, 4 },
-                { 1, 3 },
-                { 5, 6 }
-            };
-        }
-        else
-        {
-            // Иначе, парсим аргументы в двумерный массив
-            string[] rows = args[0].Split(';');
-            matrix = new int[rows.Length, rows[0].Split(',').Length];
-            for (int i = 0; i < rows.Length; i++)
-            {
-                string[] elements = rows[i].Split(',');
-                for (int j = 0; j < elements.Length; j++)
-                {
-                    if (int.TryParse(elements[j], out int number))
-                    {
-                        matrix[i, j] = number;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Ошибка при парсинге аргумента {elements[j]}.");
-                        return;
-                    }
-                }
-            }
-        }
-
-        Console.WriteLine("Исходная матрица:");
-        PrintMatrix(matrix);
-
-        int[,] matrixB =
-        {
-            { 5, 6 },
-            { 7, 8 }
-        };
-
-        Console.WriteLine("\nMatrix B:");
-        PrintMatrix(matrixB);
-
-        Console.WriteLine("\nMultiplication result:");
-
-        MultiplyIfPossible(matrix, matrixB);
+        int result = CalcAkkermanFunc(m, n); 
+        Console.WriteLine($"Akkerman function result -> {result}"); 
     }
 }
